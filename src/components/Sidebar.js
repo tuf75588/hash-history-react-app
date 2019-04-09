@@ -12,7 +12,7 @@ Sidebar.propTypes = {
 function CustomLink({ to, children }) {
   return (
     <Route
-      to={to.pathname}
+      path={to.pathname}
       children={({ match }) => (
         <li
           style={{

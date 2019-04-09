@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { Link, Route } from "react-router-dom";
 import { getPlayers } from "../api";
-import Player from "./Player";
+
 import { parse } from "query-string";
 import slug from "slug";
 
@@ -38,9 +38,7 @@ class Players extends React.Component {
         />
         {this.state.loading === false && location.pathname === "/players" ? (
           <div className='sidebar-instruction'>Please Select A Player.</div>
-        ) : (
-          ""
-        )}
+        ) : null}
         <Route
           path={`${match.url}/:player`}
           render={({ match }) => {
@@ -55,11 +53,50 @@ class Players extends React.Component {
               spg,
               apg,
               ppg
-            } = this.state.playerNames;
-            const playerName = this.state.playerNames.filter(
+            } = this.state.playerNames.find(
               (player) => slug(player.name) === match.params.player
             );
-            console.log(playerName);
+            console.log(name);
+            return (
+              <div className='panel'>
+                <img
+                  src={avatar}
+                  alt={`avatar for ${name}`}
+                  className='avatar'
+                />
+                <h1 className='medium-header'>{name}</h1>
+                <h2 className='header'>{number}</h2>
+                <div className='row'>
+                  <ul className='info-list' style={{ marginRight: 80 }}>
+                    <li>
+                      Team
+                      <div>
+                        <Link to={`/${teamId}`} style={{ color: "#68809a" }}>
+                          {teamId[0].toUpperCase() + teamId.slice(1)}
+                        </Link>
+                      </div>
+                    </li>
+                    <li>
+                      Position<div>{position}</div>
+                    </li>
+                    <li>
+                      PPG<div>{ppg}</div>
+                    </li>
+                  </ul>
+                  <ul className='info-list'>
+                    <li>
+                      APG<div>{apg}</div>
+                    </li>
+                    <li>
+                      SPG<div>{spg}</div>
+                    </li>
+                    <li>
+                      RBG<div>{rpg}</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            );
           }}
         />
       </div>
