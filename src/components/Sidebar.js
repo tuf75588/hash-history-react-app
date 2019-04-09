@@ -17,7 +17,7 @@ function CustomLink({ to, children }) {
         <li
           style={{
             listStyleType: "none",
-            fontWeight: match.pathname ? "bold" : "normal"
+            fontWeight: match ? "bold" : "normal"
           }}
         >
           <Link to={to}>{children}</Link>

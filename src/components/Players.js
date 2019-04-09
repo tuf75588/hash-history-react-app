@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { Link, Route } from "react-router-dom";
 import { getPlayers } from "../api";
+import Player from "./Player";
 import { parse } from "query-string";
 import slug from "slug";
 
@@ -26,7 +27,7 @@ class Players extends React.Component {
   };
   render() {
     const { location, match } = this.props;
-    console.log(location);
+
     return (
       <div className='container two-column'>
         <Sidebar
@@ -40,6 +41,27 @@ class Players extends React.Component {
         ) : (
           ""
         )}
+        <Route
+          path={`${match.url}/:player`}
+          render={({ match }) => {
+            if (this.state.loading === true) return null;
+            const {
+              name,
+              position,
+              teamId,
+              number,
+              avatar,
+              rpg,
+              spg,
+              apg,
+              ppg
+            } = this.state.playerNames;
+            const playerName = this.state.playerNames.filter(
+              (player) => slug(player.name) === match.params.player
+            );
+            console.log(playerName);
+          }}
+        />
       </div>
     );
   }
