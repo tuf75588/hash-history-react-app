@@ -4,6 +4,7 @@ import Sidebar from "./Sidebar";
 import { Route, Link } from "react-router-dom";
 import TeamLogo from "./TeamLogo";
 import Team from "./Team";
+import TeamPage from "./TeamPage";
 class Teams extends React.Component {
   state = {
     teams: [],
@@ -34,6 +35,7 @@ class Teams extends React.Component {
         <Route
           path={`${this.props.match.url}/:teamId`}
           render={({ match }) => {
+            console.log(match);
             return (
               <div className='panel'>
                 <Team id={match.params.teamId}>
@@ -43,6 +45,27 @@ class Teams extends React.Component {
                     ) : (
                       <div style={{ width: "100%" }}>
                         <TeamLogo id={team.id} className='center' />
+                        <h1 className='medium-header'>{team.name}</h1>
+                        <ul className='info-list row'>
+                          <li>
+                            Established
+                            <div>{team.established}</div>
+                          </li>
+                          <li>
+                            Manager
+                            <div>{team.manager}</div>
+                          </li>
+                          <li>
+                            Coach
+                            <div>{team.coach}</div>
+                          </li>
+                        </ul>
+                        <Link
+                          className='btn-main center'
+                          to={`/${match.params.teamId}`}
+                        >
+                          {team.name} Team Page
+                        </Link>
                       </div>
                     )
                   }

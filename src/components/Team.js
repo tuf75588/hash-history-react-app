@@ -1,7 +1,7 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { getTeam } from "../api";
-import { withRouter } from "react-router-dom";
+
 class Team extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
