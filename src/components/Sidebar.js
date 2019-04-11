@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Route } from "react-router-dom";
 import slug from "slug";
 import PropTypes from "prop-types";
+import Loading from "./Loading";
 
 Sidebar.propTypes = {
   // title: PropTypes.string.isRequired,
@@ -29,7 +30,7 @@ function CustomLink({ to, children }) {
 
 function Sidebar({ title, list, loading, match, location }) {
   return loading ? (
-    <h1>Loading...</h1>
+    <Loading />
   ) : (
     <div>
       <h3 className='header'>{title}</h3>

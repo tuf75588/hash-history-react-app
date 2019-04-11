@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { getTeamsArticles, getTeamNames } from "../api";
 import Team from "./Team";
 import slug from "slug";
+import Loading from "./Loading";
 
 class TeamPage extends React.Component {
   state = {
@@ -41,7 +42,7 @@ class TeamPage extends React.Component {
         <Team id={teamId}>
           {(team) =>
             team === null ? (
-              <h1>Loading...</h1>
+              <Loading />
             ) : (
               <div className='panel'>
                 <TeamLogo id={team.id} />

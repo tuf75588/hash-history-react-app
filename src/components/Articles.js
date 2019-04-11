@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { getTeamsArticles, getArticle } from "../api";
 import Article from "./Article";
+import Loading from "./Loading";
 class Articles extends React.Component {
   state = {
     articles: [],
@@ -40,7 +41,7 @@ class Articles extends React.Component {
               >
                 {(article) => {
                   return article === null ? (
-                    <h1 className='header center'>Loading....</h1>
+                    <Loading />
                   ) : (
                     <div className='panel'>
                       <article className='article' key={article.id}>
