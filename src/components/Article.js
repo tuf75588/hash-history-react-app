@@ -9,25 +9,33 @@ class Article extends Component {
     children: PropTypes.func.isRequired
   };
   state = {
-    article: {
-      title: "",
-      body: ""
-    },
-    loading: true
+    article: null
   };
   componentDidMount() {
-    this.fetchArticle(this.props.teamId, this.props.articleId);
+    const { teamId, articleId } = this.props;
+    this.fetchArticle(teamId, articleId);
   }
+
+  componentDidUpdate(prevProps) {
+    const { teamId, articleId } = this.props;
+
+    if (articleId !== prevProps.articleId) {
+      this.fetchArticle(teamId, articleId);
+    }
+  }
+
   fetchArticle = (teamId, id) => {
     this.setState(() => ({
       article: null
     }));
     getArticle(teamId, id).then((article) => {
-      console.log(article, "ARTICLE");
+      this.setState(() => ({
+        article
+      }));
     });
   };
   render() {
-    return "hi!";
+    return this.props.children(this.state.article);
   }
 }
 export default Article;

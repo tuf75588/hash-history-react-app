@@ -21,7 +21,7 @@ class Articles extends React.Component {
 
   render() {
     const { match, url } = this.props;
-    console.log(match);
+
     return (
       <div className='container two-column'>
         <Sidebar
@@ -38,8 +38,17 @@ class Articles extends React.Component {
                 articleId={match.params.articleId}
                 teamId={this.props.match.params.teamId}
               >
-                {({ article }) => {
-                  console.log(article);
+                {(article) => {
+                  return article === null ? (
+                    <h1 className='header center'>Loading....</h1>
+                  ) : (
+                    <div className='panel'>
+                      <article className='article' key={article.id}>
+                        <h1 className='header'>{article.title}</h1>
+                        <p>{article.body}</p>
+                      </article>
+                    </div>
+                  );
                 }}
               </Article>
             );
