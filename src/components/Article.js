@@ -1,42 +1,33 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import { getTeamsArticles, getArticle } from "../api";
-class Article extends React.Component {
+import { Component } from "react";
+import { getArticle } from "../api";
+import PropTypes from "prop-types";
+
+class Article extends Component {
+  static propTypes = {
+    teamId: PropTypes.string.isRequired,
+    articleId: PropTypes.string.isRequired,
+    children: PropTypes.func.isRequired
+  };
   state = {
-    articles: [],
+    article: {
+      title: "",
+      body: ""
+    },
     loading: true
   };
   componentDidMount() {
-    const { params, url } = this.props.match;
-    console.log(params, url);
-    getTeamsArticles(params.teamId).then((articles) => {
-      this.setState(() => ({
-        articles,
-        loading: false
-      }));
-    });
+    this.fetchArticle(this.props.teamId, this.props.articleId);
   }
-  fetchTeamArticle = (teamId, id) => {};
-
+  fetchArticle = (teamId, id) => {
+    this.setState(() => ({
+      article: null
+    }));
+    getArticle(teamId, id).then((article) => {
+      console.log(article, "ARTICLE");
+    });
+  };
   render() {
-    return (
-      <div className='container two-column'>
-        <Sidebar
-          list={this.state.articles.map((article) => article.title)}
-          title='Article'
-          loading={this.state.loading}
-          {...this.props}
-        />
-        <Route
-          path={this.props.match.path}
-          render={({ match }) => {
-            return <div className='panel' />;
-          }}
-        />
-      </div>
-    );
+    return "hi!";
   }
 }
-
 export default Article;

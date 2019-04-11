@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { getTeamsArticles, getTeamNames } from "../api";
 import Team from "./Team";
 import slug from "slug";
-import Article from "./Article";
+
 class TeamPage extends React.Component {
   state = {
     articles: [],
