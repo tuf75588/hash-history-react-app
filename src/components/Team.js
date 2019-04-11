@@ -8,6 +8,7 @@ class Team extends Component {
     children: PropTypes.func.isRequired
   };
   state = {
+    toHome: false,
     team: null
   };
   componentDidMount() {
@@ -22,6 +23,7 @@ class Team extends Component {
     this.setState(() => ({
       team: null
     }));
+
     getTeam(id).then((team) => {
       this.setState(() => ({
         team

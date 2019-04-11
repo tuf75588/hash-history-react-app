@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
 import NotFound from "./NotFound";
 import TeamPage from "./TeamPage";
+import Article from "./Article";
 class App extends Component {
   render() {
     return (
@@ -16,6 +17,7 @@ class App extends Component {
           <Route path='/players' component={Players} />
           <Route path='/teams' component={Teams} />
           <Route path='/:teamId' exact component={TeamPage} />
+          <Route path='/:teamId/articles' component={Article} />
           <Route component={NotFound} />
         </Switch>
       </Router>

@@ -56,7 +56,6 @@ class Players extends React.Component {
             } = this.state.playerNames.find(
               (player) => slug(player.name) === match.params.player
             );
-            console.log(name);
             return (
               <div className='panel'>
                 <img
