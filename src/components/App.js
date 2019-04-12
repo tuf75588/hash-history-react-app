@@ -1,12 +1,67 @@
 import React, { Component } from "react";
-import Home from "./Home";
-import Players from "./Players";
-import Teams from "./Teams";
+import DynamicImport from "./DynamicImport";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
-import NotFound from "./NotFound";
-import TeamPage from "./TeamPage";
-import Articles from "./Articles";
+import Loading from "./Loading";
+
+function Home(props) {
+  return (
+    <DynamicImport load={() => import("./Home")}>
+      {(Component) =>
+        Component === null ? <Loading /> : <Component {...props} />
+      }
+    </DynamicImport>
+  );
+}
+function Players(props) {
+  return (
+    <DynamicImport load={() => import("./Players")}>
+      {(Component) =>
+        Component === null ? <Loading /> : <Component {...props} />
+      }
+    </DynamicImport>
+  );
+}
+
+function Teams(props) {
+  return (
+    <DynamicImport load={() => import("./Teams")}>
+      {(Component) =>
+        Component === null ? <Loading /> : <Component {...props} />
+      }
+    </DynamicImport>
+  );
+}
+
+function TeamPage(props) {
+  return (
+    <DynamicImport load={() => import("./TeamPage")}>
+      {(Component) =>
+        Component === null ? <Loading /> : <Component {...props} />
+      }
+    </DynamicImport>
+  );
+}
+function Articles(props) {
+  return (
+    <DynamicImport load={() => import("./Articles")}>
+      {(Component) =>
+        Component === null ? <Loading /> : <Component {...props} />
+      }
+    </DynamicImport>
+  );
+}
+
+function NotFound(props) {
+  return (
+    <DynamicImport load={() => import("./NotFound")}>
+      {(Component) =>
+        Component === null ? <Loading /> : <Component {...props} />
+      }
+    </DynamicImport>
+  );
+}
+
 class App extends Component {
   render() {
     return (
