@@ -18,6 +18,7 @@ class Players extends React.Component {
       ? this.fetchPlayers(parse(location.search).teamId)
       : this.fetchPlayers();
   }
+
   fetchPlayers = (teamId) => {
     getPlayers(teamId).then((playerNames) => {
       this.setState(() => ({
@@ -30,15 +31,15 @@ class Players extends React.Component {
     const { location, match } = this.props;
 
     return (
-      <div className='container two-column'>
+      <div className="container two-column">
         <Sidebar
           list={this.state.playerNames.map((item) => item.name)}
-          title='Players'
+          title="Players"
           loading={this.state.loading}
           {...this.props}
         />
         {this.state.loading === false && location.pathname === "/players" ? (
-          <div className='sidebar-instruction'>Please Select A Player.</div>
+          <div className="sidebar-instruction">Please Select A Player.</div>
         ) : null}
         <Route
           path={`${match.url}/:player`}
@@ -58,22 +59,22 @@ class Players extends React.Component {
               (player) => slug(player.name) === match.params.player
             );
             return (
-              <TransitionGroup className='panel'>
+              <TransitionGroup className="panel">
                 <CSSTransition
                   key={location.key}
                   timeout={250}
-                  classNames='fade'
+                  classNames="fade"
                 >
-                  <div className='panel'>
+                  <div className="panel">
                     <img
                       src={avatar}
                       alt={`avatar for ${name}`}
-                      className='avatar'
+                      className="avatar"
                     />
-                    <h1 className='medium-header'>{name}</h1>
-                    <h2 className='header'>{number}</h2>
-                    <div className='row'>
-                      <ul className='info-list' style={{ marginRight: 80 }}>
+                    <h1 className="medium-header">{name}</h1>
+                    <h2 className="header">{number}</h2>
+                    <div className="row">
+                      <ul className="info-list" style={{ marginRight: 80 }}>
                         <li>
                           Team
                           <div>
@@ -92,7 +93,7 @@ class Players extends React.Component {
                           PPG<div>{ppg}</div>
                         </li>
                       </ul>
-                      <ul className='info-list'>
+                      <ul className="info-list">
                         <li>
                           APG<div>{apg}</div>
                         </li>
